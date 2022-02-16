@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const taskModel = require('../models/tasks');
+const taskModel = require('../models/taskModel');
 const connection = require('../models/connection');
 const connectionStubed = require('./utils/memoryConnection');
 
