@@ -4,9 +4,9 @@ const connection = require('./connection');
 const dbName = 'tasksModel';
 const dbCollection = 'tasks';
 
-const getAll = async () => {
+const getAll = async (sort) => {
   const allTasks = await (await connection.getConnection(dbName))
-    .collection(dbCollection).find().toArray();
+    .collection(dbCollection).find().sort(sort).toArray();
   return allTasks.map(({ _id: id, ...restTask }) => ({ id, ...restTask }));
 };
 

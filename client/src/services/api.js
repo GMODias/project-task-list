@@ -3,9 +3,11 @@ import axios from 'axios';
 const api = axios.create({ baseURL: 'http://localhost:3001' });
 
 const http = {
-  getTasks: async () => {
+  getTasks: async (sortType) => {
     try {
-      const response = await api.get('/tasks', {});
+      const response = await api.get('/tasks', {
+        headers: { sort: JSON.stringify({ ...sortType }) },
+      });
       return response.data;
     } catch (error) {
       return error.response.status;

@@ -2,7 +2,7 @@ const { ObjectId } = require('mongodb');
 const taskModel = require('../models/taskModel');
 const { isInvalidTaskProperties, haveAllProperties } = require('./utils');
 
-const getAll = async () => taskModel.getAll();
+const getAll = async (sort) => taskModel.getAll(sort);
 
 const insertTask = async (task) => {
   const isInvalidTaskPropertiesState = isInvalidTaskProperties(task);

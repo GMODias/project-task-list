@@ -1,7 +1,8 @@
 const taskService = require('../services/taskService');
 
 const getAll = async (req, res) => {
-  const tasks = await taskService.getAll();
+  const { headers: { sort } } = req;
+  const tasks = await taskService.getAll(JSON.parse(sort));
 
   return res.status(200).json(tasks);
 };

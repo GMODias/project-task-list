@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import React from 'react';
 import PropTypes from 'prop-types';
 import http from '../services/api';
@@ -10,6 +10,17 @@ const TaskCard = ({ cardData }) => {
   const [cardAction, setCardAction] = useState(action);
   const [cardResponsible, setCardResponsible] = useState(responsible);
   const [cardStatus, setCardStatus] = useState(status);
+
+  useEffect(() => {
+    const updateData = () => {
+      const { action: task, responsible: user, status: st } = cardData;
+      setCardAction(task);
+      setCardResponsible(user);
+      setCardStatus(st);
+    };
+
+    updateData();
+  }, [cardData]);
 
   const setFunctions = {
     action: (info) => setCardAction(info),
