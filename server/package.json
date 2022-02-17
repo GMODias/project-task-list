@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "node index.js",
+    "start": "node server.js",
     "test:unit": "mocha tests/*.js --watch --recursive",
     "test:mocha": "nyc --all --include models --include services --include controllers mocha tests/*.js --exit",
     "tdd": "mocha ./tests/**/*$NAME*.test.js --watch --recursive --timeout 10000",

@@ -2,7 +2,7 @@ const isRightTypes = {
   action: 'string',
   responsible: 'string',
   status: 'string',
-  createdAt: new Date(),
+  createdAt: 'string',
 };
 
 const isNotAnObject = (task) => !(task instanceof Object);

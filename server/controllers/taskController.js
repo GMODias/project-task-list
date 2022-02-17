@@ -1,9 +1,9 @@
 const taskService = require('../services/taskService');
 
 const getAll = async (req, res) => {
-  const cars = await taskService.getAll();
+  const tasks = await taskService.getAll();
 
-  return res.status(200).json(cars);
+  return res.status(200).json(tasks);
 };
 
 const insertTask = async (req, res) => {

@@ -57,6 +57,7 @@ describe('Task services', function () {
   describe('InsertFunction', function () {
     it('Sucess insertion', async function () {
       const insertedTask = await taskService.insertTask({ ...testData.newTask });
+      console.log(insertedTask);
       expect(insertedTask).to.be.an('object');
       expect(insertedTask).to.have.keys(['id', ...Object.keys({ ...testData.newTask })]);
     });
