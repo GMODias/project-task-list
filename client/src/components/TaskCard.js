@@ -43,6 +43,7 @@ const TaskCard = ({ cardData, update }) => {
 
   const deleteTaskBtn = () => (
     <button
+      className="deleteBtn"
       type="button"
       name={ id }
       onClick={ ({ target }) => deleteClick(target) }
@@ -64,7 +65,8 @@ const TaskCard = ({ cardData, update }) => {
   };
 
   const inputUpdate = (kind) => (
-    <input
+    <textarea
+      className={ kind }
       type="text"
       name={ kind }
       value={ stateTranslator[kind] }
@@ -73,11 +75,18 @@ const TaskCard = ({ cardData, update }) => {
     />
   );
 
-  const dataRender = (kind) => (
-    toggle
-      ? <p onDoubleClick={ () => setToggle(false) }>{stateTranslator[kind]}</p>
-      : inputUpdate(kind)
-  );
+  const dataRender = (kind) => {
+    if (toggle) {
+      return (
+        <p
+          className={ kind }
+          onDoubleClick={ () => setToggle(false) }
+        >
+          {stateTranslator[kind]}
+        </p>);
+    }
+    return inputUpdate(kind);
+  };
 
   // Botões de alteração de status e suas lógicas
   const handleStatusBtnClick = async ({ className, name }) => {
@@ -107,7 +116,7 @@ const TaskCard = ({ cardData, update }) => {
         {statusBtn('EM ANDAMENTO')}
         {statusBtn('CONCLUÍDO')}
       </div>
-      <p>{createdAt}</p>
+      <p className="createdAt">{createdAt}</p>
       {deleteTaskBtn()}
     </div>
   );
