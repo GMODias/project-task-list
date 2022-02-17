@@ -27,6 +27,14 @@ const http = {
       return error.response.status;
     }
   },
+  createTask: async (payload) => {
+    try {
+      const response = await api.post('/tasks', { ...payload });
+      return response.data;
+    } catch (error) {
+      return error.response.status;
+    }
+  },
 
 };
 
