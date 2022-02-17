@@ -6,7 +6,7 @@ import SortBtns from '../components/SortBtns';
 const Main = () => {
   const [tasks, setTasks] = useState(null);
   const [sort, setSort] = useState({ createdAt: -1 });
-  console.log('------->', sort);
+  const [qttUpdate, setQttUpdate] = useState(true);
 
   useEffect(() => {
     const getAllTasks = async () => {
@@ -14,8 +14,11 @@ const Main = () => {
       setTasks(result);
     };
 
-    getAllTasks();
-  }, [sort]);
+    if (qttUpdate) {
+      getAllTasks();
+      setQttUpdate(false);
+    }
+  }, [sort, qttUpdate]);
 
   console.log(tasks);
 
@@ -26,7 +29,7 @@ const Main = () => {
         <p>Boa Tarde</p>
       </div>
       <SortBtns sort={ sort } setSort={ setSort } />
-      <CardList kind={ sort } listData={ tasks } />
+      <CardList update={ setQttUpdate } listData={ tasks } />
     </>
   );
 };

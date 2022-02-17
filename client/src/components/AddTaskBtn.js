@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import http from '../services/api';
 // import '../styles/TaskCard.css';
 
-const AddTaskBtn = () => {
+const AddTaskBtn = ({ update }) => {
   const addBtnClick = async () => {
     const newEmptyTask = {
       action: 'Descreva a Tarefa - 2 cliques para editar e Enter para concluir.',
@@ -11,6 +12,7 @@ const AddTaskBtn = () => {
       createdAt: (new Date()).toLocaleString('pt-br'),
     };
     await http.createTask(newEmptyTask);
+    update(true);
   };
 
   const addTaskBtn = () => (
@@ -30,3 +32,7 @@ const AddTaskBtn = () => {
 };
 
 export default AddTaskBtn;
+
+AddTaskBtn.propTypes = {
+  update: PropTypes.func.isRequired,
+};

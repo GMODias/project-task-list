@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import http from '../services/api';
 import '../styles/TaskCard.css';
 
-const TaskCard = ({ cardData }) => {
+const TaskCard = ({ cardData, update }) => {
   const { action, createdAt, id, responsible, status } = cardData;
   const [toggle, setToggle] = useState(true);
   const [cardAction, setCardAction] = useState(action);
@@ -38,7 +38,7 @@ const TaskCard = ({ cardData }) => {
   const deleteClick = async ({ name }) => {
     console.log(name);
     await http.deleteTask(name);
-    window.location.reload(false);
+    update(true);
   };
 
   const deleteTaskBtn = () => (
@@ -116,6 +116,7 @@ const TaskCard = ({ cardData }) => {
 export default TaskCard;
 
 TaskCard.propTypes = {
+  update: PropTypes.func.isRequired,
   cardData: PropTypes.shape({
     action: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
