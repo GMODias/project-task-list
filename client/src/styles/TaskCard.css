@@ -44,8 +44,15 @@
   position: absolute;
 }
 
+.statusPlace button{
+border: none;
+border-radius: .6em;
+font-weight: 800;
+height: 26px;
+}
+
 .chosenStatus {
-  background-color: blue;
+  background-color: rgb(255, 51, 0);
 }
 
 .deleteBtn {
