@@ -1,8 +1,6 @@
 const { expect } = require('chai');
-const sinon = require('sinon');
 const taskModel = require('../models/taskModel');
 const connection = require('../models/connection');
-const connectionStubed = require('./utils/memoryConnection');
 
 const dbName = 'tasksModel';
 const dbCollection = 'tasks';
@@ -19,20 +17,11 @@ async function deleteAllData(myDbName, myDbCollection) {
 }
 
 describe('Tasks model tests', function () {
-  before(async function () {
-    sinon.stub(connection, 'getConnection').resolves(connectionStubed.getConnection());
-  });
-
-  beforeEach(async function () {
-    await deleteAllData(dbName, dbCollection);
-  });
-
-  after(async function () {
-    sinon.restore();
-    connectionStubed.closeConnection();
-  });
-
-  describe('Checking basic function', function () {
+  describe('Checking basic function', function () { 
+    beforeEach(async function () {
+      await deleteAllData(dbName, dbCollection);
+    });
+    
     it('Basic CRUD functions for task model', async function () {
       expect(taskModel).to.be.an('object');
       expect(taskModel).to.have.all.keys([
