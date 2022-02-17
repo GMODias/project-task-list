@@ -11,6 +11,14 @@ const http = {
       return error.response.status;
     }
   },
+  deleteTask: async (id) => {
+    try {
+      const response = await api.delete('/tasks', { data: { id } });
+      return response.data;
+    } catch (error) {
+      return error.response.status;
+    }
+  },
 
 };
 
