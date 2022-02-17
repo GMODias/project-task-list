@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const taskService = require('../services/taskService');
 
 const getAll = async (req, res) => {
@@ -19,13 +18,13 @@ const editTask = async (req, res) => {
   const { body } = req;
   const task = await taskService.editTask(body);
   if (task.isError) return res.status(422).json(task);
-
+  
   return res.status(204).json(task);
 };
 
 const deleteTask = async (req, res) => {
   const { id } = req.body;
-  const task = await taskService.deleteTask(ObjectId(id));
+  const task = await taskService.deleteTask(id);
   if (task.isError) return res.status(422).json(task);
 
   return res.status(202).json(task);

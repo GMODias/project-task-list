@@ -19,8 +19,8 @@ const editTask = async (task) => {
   if (allPropertiesValid) {
     return { isError: true };
   }
-  const editedTask = await taskModel.editTask(task);
-  return { ...task, id: editedTask.insertedId };
+  await taskModel.editTask(task);
+  return { ...task };
 };
 
 const deleteTask = async (id) => {
