@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TaskCard from './TaskCard';
 import AddTaskBtn from './AddTaskBtn';
+import '../styles/CardList.css';
 
 const CardList = ({ listData, update }) => {
   console.log('cardlist', listData, update);

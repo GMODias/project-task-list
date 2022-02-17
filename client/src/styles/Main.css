@@ -1,0 +1,15 @@
+body {
+  background-color: rgb(225, 233, 214);
+}
+
+main {
+  align-items: center;
+  background-color: grey;
+  border-left: 10px solid rgb(0, 51, 3);
+  border-right: 10px solid rgb(0, 51, 3);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  width: 60vw;
+}

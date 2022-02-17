@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import http from '../services/api';
 import CardList from '../components/CardList';
 import SortBtns from '../components/SortBtns';
+import '../styles/Main.css';
 
 const Main = () => {
   const [tasks, setTasks] = useState(null);
@@ -20,17 +21,14 @@ const Main = () => {
     }
   }, [sort, qttUpdate]);
 
-  console.log(tasks);
+  console.log(sort);
 
   if (tasks === null) return <h1>Carregando</h1>;
   return (
-    <>
-      <div>
-        <p>Boa Tarde</p>
-      </div>
-      <SortBtns sort={ sort } setSort={ setSort } />
+    <main>
+      <SortBtns sort={ sort } setSort={ setSort } update={ setQttUpdate } />
       <CardList update={ setQttUpdate } listData={ tasks } />
-    </>
+    </main>
   );
 };
 
