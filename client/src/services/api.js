@@ -19,6 +19,14 @@ const http = {
       return error.response.status;
     }
   },
+  editTask: async (payload) => {
+    try {
+      const response = await api.put('/tasks', { ...payload });
+      return response.data;
+    } catch (error) {
+      return error.response.status;
+    }
+  },
 
 };
 

@@ -23,19 +23,32 @@ const TaskCard = ({ cardData }) => {
     status: cardStatus,
   };
 
+  // Renderização do botão de delete e a sua ação ao ser clicado
   const deleteClick = async ({ name }) => {
     console.log(name);
     await http.deleteTask(name);
     window.location.reload(false);
   };
 
+  const deleteTaskBtn = () => (
+    <button
+      type="button"
+      name={ id }
+      onClick={ ({ target }) => deleteClick(target) }
+    >
+      X
+    </button>
+  );
+
+  // Renderização dos textos de responsável e tarefa, e possibilita aleterar o conteúdo desses com 2 clickes, e sai com enter
   const handleInputChange = ({ value, name }) => {
     setFunctions[name](value);
   };
 
-  const keyDownEvent = (key) => {
+  const keyDownEvent = async (key) => {
     if (key === 'Enter' || key === 'Escape') {
       setToggle(true);
+      await http.editTask({ id, action: cardAction, responsible: cardResponsible });
     }
   };
 
@@ -55,19 +68,36 @@ const TaskCard = ({ cardData }) => {
       : inputUpdate(kind)
   );
 
+  // Botões de alteração de status e suas lógicas
+  const handleStatusBtnClick = async ({ className, name }) => {
+    if (className !== 'chosenStatus') {
+      setCardStatus(name);
+      await http.editTask({ id, status: name });
+    }
+  };
+
+  const statusBtn = (text) => (
+    <button
+      className={ text === cardStatus ? 'chosenStatus' : 'regularStatus' }
+      name={ text }
+      onClick={ ({ target }) => handleStatusBtnClick(target) }
+      type="button"
+    >
+      {text}
+    </button>
+  );
+
   return (
     <div className="taskCard">
       {dataRender('action')}
       {dataRender('responsible')}
-      <p>{status}</p>
+      <div className="statusPlace">
+        {statusBtn('PENDENTE')}
+        {statusBtn('EM ANDAMENTO')}
+        {statusBtn('CONCLUÍDO')}
+      </div>
       <p>{createdAt}</p>
-      <button
-        type="button"
-        name={ id }
-        onClick={ ({ target }) => deleteClick(target) }
-      >
-        X
-      </button>
+      {deleteTaskBtn()}
     </div>
   );
 };

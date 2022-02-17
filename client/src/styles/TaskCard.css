@@ -7,3 +7,12 @@
   margin: 10px;
   width: 600px
 }
+
+.statusPlace {
+  display: flex;
+  flex-direction: column;
+}
+
+.chosenStatus {
+  background-color: blue;
+}
