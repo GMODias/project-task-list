@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import http from '../services/api';
-// import '../styles/TaskCard.css';
+import '../styles/AddTaskBtn.css';
 
 const AddTaskBtn = ({ update }) => {
   const addBtnClick = async () => {
@@ -17,6 +17,7 @@ const AddTaskBtn = ({ update }) => {
 
   const addTaskBtn = () => (
     <button
+      className="addTaskBtn"
       type="button"
       onClick={ () => addBtnClick() }
     >

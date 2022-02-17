@@ -5,7 +5,7 @@ import '../styles/SortBtns.css';
 const DESC = -1;
 const ASC = 1;
 
-const SortBtns = ({ sort, setSort }) => {
+const SortBtns = ({ update, sort, setSort }) => {
   const [orderingKey, setOrderingKey] = useState(Object.entries(sort)[0][0]);
   const [orderingDirection, setOrderingDirection] = useState(Object.entries(sort)[0][1]);
 
@@ -14,10 +14,12 @@ const SortBtns = ({ sort, setSort }) => {
       if (orderingDirection !== Number(name)) {
         setOrderingDirection(Number(name));
         setSort({ [orderingKey]: (Number(name)) });
+        update(true);
       }
     } else if (orderingKey !== name) {
       setOrderingKey(name);
       setSort({ [name]: orderingDirection });
+      update(true);
     }
   };
 
@@ -52,4 +54,5 @@ export default SortBtns;
 SortBtns.propTypes = {
   setSort: PropTypes.func.isRequired,
   sort: PropTypes.shape().isRequired,
+  update: PropTypes.func.isRequired,
 };
