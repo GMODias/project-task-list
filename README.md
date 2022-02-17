@@ -55,7 +55,7 @@ O código foi baseado no que eu encontrei na página: https://flaviocopes.com/re
 Para o Front-end, ainda é necessário desenvolver os testes, melhoria futura prevista para antes de implementação de qualquer outra melhoria (exceto pela necessidade de estiliza-lo => número 2 na lista de prioridades).
 
 
-## Gostaria de ver o código rodando na minha Máquina!
+## Gostaria de ver o código rodando em sua Máquina?
 
 Pre-requisitos para rodar o projeto:
 + mongoDB
